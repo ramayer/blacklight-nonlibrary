@@ -10,6 +10,8 @@ require File.join(File.dirname(__FILE__), '../vendor/plugins/blacklight/vendor/p
 Rails::Initializer.run do |config|
   config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/blacklight/vendor/plugins"]
   config.gem 'authlogic', :version => '2.1.2'
+  config.gem "authlogic-oid", :lib => "authlogic_openid"
+
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

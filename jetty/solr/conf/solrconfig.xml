@@ -214,9 +214,63 @@
       <float name="tie">0.01</float>
 
       <!-- NOT using marc_display because it is large and will slow things down for search results -->
+      <!-- RAM: This seems to be what choose the columns for the main search results -->
       <str name="fl">
         id, 
         score,
+
+        incident_date_display,
+        suspect_display,
+        victim_display,
+        person_display,
+        officer_display,
+        property_display,
+        narrative_display,
+
+
+        beat_s
+        cvroffsn_s,
+        determinerace_s,
+        durationofencounter_s,
+        encountertype_s,
+        officerno_s,
+        rdno_s,
+        reasonforencountercrim_s,
+        reasonforencounteroth_s,
+        reasonforencountertraff_s,
+        resultofencounter_s,
+        resultofsearch_s,
+        specialassigncat_s,
+        specialassignyn_s,
+        stopcategory_s,
+        streetlocation_s,
+        supervisorno_s,
+        ttime_s,
+        age_s,
+        consent_s,
+        gender_s,
+        incident_s,
+        inventory_s,
+        pc_s,
+        probparole_s,
+        race_s,
+        resident_s,
+        search_s,
+        searchwar_s,
+        weapons_s,
+
+
+        incident_location_display,
+        arrest_location_display,
+
+        arrested_display,
+        arrest_charge_display,
+        offense_display,
+        date_dt,
+        img_url_s,
+        lat_d,
+        lon_d,
+
         author_display,
         author_vern_display, 
         format, 

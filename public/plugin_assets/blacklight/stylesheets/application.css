@@ -42,7 +42,7 @@ a:hover {color: #029;}
 .yui-t2 .yui-b p {padding-top: 2em;}
 
 /* Top Banner */
-h1.site_title {background: transparent url('../images/logo.png') no-repeat top left; margin: 2em 0px 0px 1em; height: 35px; width: 120px;} 
+h1.site_title {background: transparent url('../images/logo.png') no-repeat top left; margin: 2em 0px 0px 1em; height: 51px; width: 200px;} 
 .first h1 {margin: 0px; padding: 0px;}
 h1.site_title a {display:block; height: 35px; width:120px; text-indent: -9999px; overflow: hidden; text-decoration: none; border: 0px;}
 h1.site_title a:link, h1.site_title a:visited, h1.site_title a:hover, h1.site_title a:active {border: 0px;}
@@ -89,7 +89,7 @@ th, td {border: 0;}
 /* Search Results */
 .document {padding: 0.5em 0 0 0; background-color: #fff; border-bottom: 1px dotted #ccc;}
 
-#documents {background-color: #eee; color: #333; width: 650px;}
+#documents {background-color: #eee; color: #333; width: 650px; clear:both}
 #documents .documentHeader {background-color: #fff; padding: 0px;}
 #documents .documentHeader .documentFunctions {text-align:right;}
 #documents .per_page {padding-right: 5px;}

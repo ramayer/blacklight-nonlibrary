@@ -17,6 +17,103 @@
 # 
 
 Blacklight.configure(:shared) do |config|
+
+
+  labels = {
+      "author_display"          => "Author:",
+      "author_vern_display"     => "Author:",
+      "format"                  => "Format:",
+      "isbn_t"                  => "ISBN:",
+      "language_facet"          => "Language:",
+      "lc_1letter_facet" 	=> "Call Number",
+      "lc_callnum_display"      => "Call number:",
+      "material_type_display"   => "Physical description:",
+      "pub_date"          	=> "Publication Year",
+      "published_display"       => "Published:",
+      "published_vern_display"  => "Published:",
+      "subject_era_facet"  	=> "Era",
+      "subject_geo_facet" 	=> "Region",
+      "subject_topic_facet"	=> "Topic",
+      "subtitle_display"        => "Subtitle:",
+      "subtitle_vern_display"   => "Subtitle:",
+      "title_display"           => "Title:",
+      "title_vern_display"      => "Title:",
+      "url_fulltext_display"    => "URL:",
+      "url_suppl_display"       => "More Information:",
+
+        "beat_s" => "beat_s",
+        "cvroffsn_s" => "cvroffsn_s",
+        "determinerace_s" => "determinerace_s",
+        "durationofencounter_s" => "durationofencounter_s",
+        "encountertype_s" => "encountertype_s",
+        "officerno_s" => "officerno_s",
+        "rdno_s" => "rdno_s",
+        "reasonforencountercrim_s" => "reasonforencountercrim_s",
+        "reasonforencounteroth_s" => "reasonforencounteroth_s",
+        "reasonforencountertraff_s" => "reasonforencountertraff_s",
+        "resultofencounter_s" => "resultofencounter_s",
+        "resultofsearch_s" => "resultofsearch_s",
+        "specialassigncat_s" => "specialassigncat_s",
+        "specialassignyn_s" => "specialassignyn_s",
+        "stopcategory_s" => "stopcategory_s",
+        "streetlocation_s" => "streetlocation_s",
+        "supervisorno_s" => "supervisorno_s",
+        "ttime_s" => "ttime_s",
+        "age_s" => "age_s",
+        "consent_s" => "consent_s",
+        "gender_s" => "gender_s",
+        "incident_s" => "incident_s",
+        "inventory_s" => "inventory_s",
+        "pc_s" => "pc_s",
+        "probparole_s" => "probparole_s",
+        "race_s" => "race_s",
+        "resident_s" => "resident_s",
+        "search_s" => "search_s",
+        "searchwar_s" => "searchwar_s",
+        "weapons_s" => "weapons_s",
+
+
+
+
+      "agency_s"                      => "Agency",
+      "officer_s"                     => "Officer",
+
+      "offense_s" 		      => "Offense(s)",
+      "offense_category_facet"        => "Offense Category",
+      "offense_subcategory_facet"     => "Offense Subcategory",
+
+      "suspect_age_facet"             => "Suspect Age",
+      "suspect_gender_facet"          => "Suspect Gender",
+      "suspect_race_facet"            => "Suspect Race",
+      "suspect_display"               => "Suspect",
+      "person_display"               => "Other people",
+
+      "incident_location_display"     => "Incident Location",
+      "arrest_location_display"       => "Arrest Location",
+
+      "property_type_facet"           => "Property Type",
+      "property_manufacturer_facet"   => "Property Manufacturer",
+      "property_model_facet"  	      => "Property Model",
+
+      "drug_facet"                    => "Drugs",
+      "weapon_facet"                  => "Weapons",
+      "property_s"                    => "Property",
+      "property_display"              => "Property",
+
+      "arrested_display"               => "Arrested",
+      "arrest_charge_display"          => "Arrest Charges",
+      "offense_display" 	       => "Offense",
+
+      "victim_age_facet"              => "Victim Age",
+      "victim_gender_facet"           => "Victim Gender",
+      "victim_race_facet"             => "Victim Race",
+      "victim_display"                => "Victim",
+
+      "stopcategory_s"                => "Stop Category",
+      "date_dt"			      => "Date",
+    }
+
+
   
   # FIXME: is this duplicated below?
   SolrDocument.marc_source_field  = :marc_display
@@ -27,7 +124,10 @@ Blacklight.configure(:shared) do |config|
     :qt=>:search,
     :per_page => 10,
     :facets => {:fields=>
-      ["format",
+      [
+        "agency_s",
+
+        "format",
         "language_facet",
         "lc_1letter_facet",
         "lc_alpha_facet",
@@ -66,58 +166,145 @@ Blacklight.configure(:shared) do |config|
 
   # solr fields that will be treated as facets by the blacklight application
   #   The ordering of the field names is the order of the display 
+  # 
+  # RAM: These seem not to have to be added to the corresponding section in 
+  #      solrconfig.xml
+  #      Rails does needs to be restarted when these change. 
+
   config[:facet] = {
-    :field_names => [
-      "format",
-      "pub_date",
-      "subject_topic_facet",
-      "language_facet",
-      "lc_1letter_facet",
-      "subject_geo_facet",
-      "subject_era_facet"
-    ],
-    :labels => {
-      "format"              => "Format",
-      "pub_date"            => "Publication Year",
-      "subject_topic_facet" => "Topic",
-      "language_facet"      => "Language",
-      "lc_1letter_facet"    => "Call Number",
-      "subject_era_facet"   => "Era",
-      "subject_geo_facet"   => "Region"
-    }
+    :field_names => %W{
+      agency_s
+
+      suspect_gender_facet
+      suspect_race_facet
+      suspect_age_facet
+
+      victim_gender_facet
+      victim_race_facet
+      victim_age_facet
+
+      offense_category_facet
+      offense_subcategory_facet
+
+      property_manufacturer_facet
+      property_model_facet
+      property_type_facet
+
+      location_city_facet
+      location_street_facet
+
+      drug_facet
+      penal_code_facet
+      penal_offense_facet
+      penal_UCR_code_facet
+      arrest_charge_facet
+      arrest_penal_code_facet
+
+      format
+      subject_topic_facet
+      pub_date
+      language_facet
+      lc_1letter_facet
+      subject_geo_facet
+      subject_era_facet
+
+        beat_s
+        cvroffsn_s
+        determinerace_s
+        durationofencounter_s
+        encountertype_s
+        officerno_s
+        rdno_s
+        reasonforencountercrim_s
+        reasonforencounteroth_s
+        reasonforencountertraff_s
+        resultofencounter_s
+        resultofsearch_s
+        specialassigncat_s
+        specialassignyn_s
+        stopcategory_s
+        streetlocation_s
+        supervisorno_s
+        ttime_s
+        age_s
+        consent_s
+        gender_s
+        incident_s
+        inventory_s
+        pc_s
+        probparole_s
+        race_s
+        resident_s
+        search_s
+        searchwar_s
+        weapons_s
+
+
+    },
+    :labels => labels
   }
 
   # solr fields to be displayed in the index (search results) view
   #   The ordering of the field names is the order of the display 
+  #
+  # RAM - These control what appears on search results
+  #       you must restart rails for them to take effect.
+  #
+  #       The fields must also be added to solrconfig.xml
+  #
+
   config[:index_fields] = {
-    :field_names => [
-      "title_display",
-      "title_vern_display",
-      "author_display",
-      "author_vern_display",
-      "format",
-      "language_facet",
-      "published_display",
-      "published_vern_display",
-      "lc_callnum_display"
-    ],
-    :labels => {
-      "title_display"           => "Title:",
-      "title_vern_display"      => "Title:",
-      "author_display"          => "Author:",
-      "author_vern_display"     => "Author:",
-      "format"                  => "Format:",
-      "language_facet"          => "Language:",
-      "published_display"       => "Published:",
-      "published_vern_display"  => "Published:",
-      "lc_callnum_display"      => "Call number:"
-    }
+    :field_names =>  %W{
+
+      agency_s
+      date_dt
+
+      offense_display
+      incident_location_display
+
+      suspect_display
+      victim_display
+      person_display
+      officer_display
+
+      property_display
+      officerno_s
+      resultofencounter_s
+      search_s
+      resultofsearch_s
+
+      arrested_display
+      arrest_charge_display
+      arrest_location_display
+      
+
+      offense_s
+      officer_s
+      victim_s
+      suspect_s
+      property_s
+      narrative_display
+      
+      material_type_display
+      author_display
+      author_vern_display
+      format
+      language_facet
+      published_display
+      published_vern_display
+      lc_callnum_display
+    },
+    :labels => labels
   }
 
   # solr fields to be displayed in the show (single result) view
   #   The ordering of the field names is the order of the display 
+  # 
+  # RAM: Seems not to have to be added in solr.config because
+  #      it seems use a wildcard.
   config[:show_fields] = {
     :field_names => [
+      "agency_s",
       "title_display",
       "title_vern_display",
       "subtitle_display",
@@ -134,23 +321,7 @@ Blacklight.configure(:shared) do |config|
       "lc_callnum_display",
       "isbn_t"
     ],
-    :labels => {
-      "title_display"           => "Title:",
-      "title_vern_display"      => "Title:",
-      "subtitle_display"        => "Subtitle:",
-      "subtitle_vern_display"   => "Subtitle:",
-      "author_display"          => "Author:",
-      "author_vern_display"     => "Author:",
-      "format"                  => "Format:",
-      "url_fulltext_display"    => "URL:",
-      "url_suppl_display"       => "More Information:",
-      "material_type_display"   => "Physical description:",
-      "language_facet"          => "Language:",
-      "published_display"       => "Published:",
-      "published_vern_display"  => "Published:",
-      "lc_callnum_display"      => "Call number:",
-      "isbn_t"                  => "ISBN:"
-    }
+    :labels => labels
   }
 
 # FIXME: is this now redundant with above?
@@ -177,6 +348,10 @@ Blacklight.configure(:shared) do |config|
   config[:sort_fields] << ['year', 'pub_date_sort desc, title_sort asc']
   config[:sort_fields] << ['author', 'author_sort asc, title_sort asc']
   config[:sort_fields] << ['title', 'title_sort asc, pub_date_sort desc']
+  config[:sort_fields] << ['agency', 'agency_s asc, suspect_s desc']
+  config[:sort_fields] << ['victim_race', 'suspect_s asc, agency_s asc']
+  config[:sort_fields] << ['date', 'date_dt desc, agency_s asc']
+
   
   # If there are more than this many search results, no spelling ("did you 
   # mean") suggestion is offered.
